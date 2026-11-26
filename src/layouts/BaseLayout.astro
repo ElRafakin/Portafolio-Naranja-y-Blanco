@@ -1,0 +1,88 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import { site } from '../data/site.js';
+
+const {
+  title = `${site.name} — Diseño Gráfico y Edición de Video`,
+  description = 'Portafolio profesional de Rafa Castro. Identidad visual, diseño editorial, piezas impresas y edición audiovisual.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fd2601" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Ir al contenido principal</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="/" aria-label="Rafa Castro: inicio">
+          <span>RAFA CASTRO</span>
+          <span class="logo-dot" aria-hidden="true"></span>
+        </a>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Abrir menú de navegación"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
+          <a href="/#work">Proyectos</a>
+          <a href="/#services">Servicios</a>
+          <a href="/#about">Perfil</a>
+          <a class="nav-cta-link" href="/#contact">
+            <span>Contrátame</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10" />
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">RAFA CASTRO</span>
+          <span class="footer-meta">© {new Date().getFullYear()} · {site.location}</span>
+        </div>
+        <span class="footer-tagline">DISEÑO GRÁFICO & EDICIÓN AUDIOVISUAL</span>
+        <a class="footer-top" href="#top" aria-label="Volver al inicio">
+          <span>SUBIR</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m18 15-6-6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/site.js';
+      import '../scripts/interactions.js';
+    </script>
+  </body>
+</html>

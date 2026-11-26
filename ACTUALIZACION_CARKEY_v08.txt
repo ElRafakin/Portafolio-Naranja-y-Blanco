@@ -1,0 +1,31 @@
+ACTUALIZACIÓN DEL PORTAFOLIO RAFA CASTRO — v0.8
+CarKey & Remote · Tarjetas bilingües (propuesta 02 destacada)
+
+1) Detén Astro en Visual Studio Code (Ctrl+C).
+2) Haz una copia de seguridad de tu carpeta rafa-castro-portfolio.
+3) EXTRAe el parche v0.8. Copia las carpetas src y public
+   del parche DENTRO de rafa-castro-portfolio, reemplazando los archivos.
+4) Abre la terminal en la carpeta que contiene package.json.
+5) Ejecuta:
+      npm.cmd run dev
+6) Visita:
+      http://localhost:4321/work/carkey-remote/
+   Y verifica la portada en http://localhost:4321/
+
+El parche está basado en la versión v0.7. No borra tus videos ni
+las páginas anteriores. No necesitas npm install.
+
+CAMBIOS
+- Nuevo proyecto: CarKey & Remote, número 04.
+- Portada editorial realizada con los diseños originales del PDF.
+- Galería: frente, reverso, tarjeta anterior y otras rutas.
+- Sección de diagnóstico visual.
+- Proyectos posteriores renumerados del 05 al 08.
+- Aclaración honesta: propuesta 02 destacada por decisión del diseñador,
+  no aprobada formalmente por el cliente.
+
+Antes de publicar en Internet confirma que puedes exhibir las
+piezas y materiales del cliente. Los datos de contacto impresos en
+las tarjetas se muestran tal como figuran en el PDF original.
+
+No se incluyen fuentes comerciales.

@@ -1,0 +1,16 @@
+ACTUALIZACIÓN DE VIDEOS / V0.4
+
+1. Haz una copia de seguridad de tu proyecto actual.
+2. Copia el contenido de este parche (src y public) dentro de la carpeta rafa-castro-portfolio existente y acepta reemplazar archivos.
+3. Abre una terminal ubicada donde está package.json.
+4. Ejecuta: npm.cmd run dev
+5. En el navegador visita http://localhost:4321/ y prueba /work/frontrow/ y /work/teleton/.
+
+NO ES NECESARIO INSTALAR DEPENDENCIAS NUEVAS.
+
+Aclaraciones:
+- Se conserva la apariencia y animaciones de la versión 0.3.
+- Los videos se han comprimido para uso web.
+- Los años de ambos proyectos están pendientes de confirmar.
+- Comprueba permisos de publicación de material del cliente, imágenes de artistas, terceros y música antes de subir el sitio a internet.
+- El sitio utiliza las fuentes alternativas hasta instalar legalmente las webfonts de Arsenica y Codec Pro.

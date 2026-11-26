@@ -1,0 +1,201 @@
+/* Rafa Castro · Custom Video Player (Bold Portfolio Hero Edition) */
+.rc-player {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #161312;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.rc-player:fullscreen {
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #161312;
+}
+
+.rc-player__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rc-player__bigplay {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(64px, 7vw, 84px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, #fd2601 0%, #f37e1c 100%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 200ms ease-out, background-color 200ms ease-out, opacity 200ms ease-out, visibility 200ms ease-out;
+}
+
+.rc-player__bigplay svg {
+  width: 34%;
+  height: 34%;
+  margin-left: 3px;
+}
+
+.rc-player__bigplay:hover,
+.rc-player__bigplay:focus-visible {
+  transform: translate(-50%, -50%) scale(1.07);
+}
+
+.rc-player.is-playing .rc-player__bigplay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.rc-player__controls {
+  position: absolute;
+  z-index: 2;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(22, 19, 18, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.rc-player__progress-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 18px;
+}
+
+.rc-player__progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    #fd2601 var(--progress),
+    rgba(255, 255, 255, 0.25) var(--progress)
+  );
+  cursor: pointer;
+}
+
+.rc-player__progress::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #fd2601;
+}
+
+.rc-player__progress::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #fd2601;
+}
+
+.rc-player__toolbar,
+.rc-player__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rc-player__toolbar {
+  margin-top: 6px;
+}
+
+.rc-player__group {
+  justify-content: flex-start;
+}
+
+.rc-player__btn {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+.rc-player__btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.rc-player__btn:hover,
+.rc-player__btn:focus-visible {
+  background: #fd2601;
+  color: #ffffff;
+}
+
+.rc-player__time {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+.rc-player__time-sep {
+  opacity: 0.45;
+  padding: 0 3px;
+}
+
+.rc-player__volume {
+  accent-color: #fd2601;
+  width: 68px;
+  cursor: pointer;
+}
+
+.rc-player .rc-icon-pause,
+.rc-player .rc-icon-muted {
+  display: none;
+}
+
+.rc-player.is-playing .rc-icon-pause,
+.rc-player.is-muted .rc-icon-muted {
+  display: block;
+}
+
+.rc-player.is-playing .rc-icon-play,
+.rc-player.is-muted .rc-icon-sound {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .rc-player__controls {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 8px 10px;
+  }
+  .rc-player__volume,
+  .rc-player__skip {
+    display: none;
+  }
+  .rc-player__time {
+    font-size: 11px;
+  }
+}

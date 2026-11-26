@@ -1,0 +1,6 @@
+RAFA CASTRO — REPRODUCTOR v0.6
+1. Deten Astro (Ctrl+C).
+2. Haz una copia de seguridad de tu proyecto.
+3. Copia la carpeta src de este ZIP dentro de rafa-castro-portfolio y acepta reemplazar.
+4. Ejecuta npm.cmd run dev y comprueba las paginas /work/frontrow/ y /work/teleton/.
+No hace falta npm install. No se cambian videos, portadas, ni proyectos.

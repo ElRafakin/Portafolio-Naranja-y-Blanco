@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects.js';
+import { site } from '../data/site.js';
+---
+<BaseLayout title="Rafa Castro — Diseño Gráfico y Edición de Video">
+  <!-- BOLD PORTFOLIO HERO (VERTICAL GRADIENT #fd2601 -> #f37e1c) -->
+  <section class="bold-hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-blob hero-blob--one" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob--two" aria-hidden="true"></div>
+
+    <!-- Giant Background SVG Text (opacity 0.08, blur 4px) -->
+    <svg class="hero-bg-svg" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <text
+        x="50%"
+        y="46%"
+        text-anchor="middle"
+        fill="#ffffff"
+        font-family="Anton, Impact, sans-serif"
+        font-size="300"
+        letter-spacing="10"
+      >
+        RAFA CASTRO
+      </text>
+      <text
+        x="50%"
+        y="84%"
+        text-anchor="middle"
+        fill="#ffffff"
+        font-family="Anton, Impact, sans-serif"
+        font-size="250"
+        letter-spacing="12"
+      >
+        PORTFOLIO 26
+      </text>
+    </svg>
+
+    <div class="container hero-main-container">
+      <div class="hero-poster-grid">
+        <!-- Oversized Anton Typography Left -->
+        <div class="hero-headline-col">
+          <div class="hero-eyebrow-row" data-reveal>
+            <span class="accent-pill accent-pill--hero">
+              <span class="status-dot-white" aria-hidden="true"></span>
+              DISPONIBLE PARA FREELANCE · CDMX
+            </span>
+          </div>
+
+          <h1 class="hero-massive-title" id="hero-title" data-reveal>
+            <span>DISEÑO</span>
+            <span>GRÁFICO Y</span>
+            <span>EDICIÓN DE</span>
+            <span>VIDEO.</span>
+          </h1>
+
+          <p class="hero-subcopy" data-reveal>
+            Identidad visual, diseño editorial e impreso y narrativa audiovisual con jerarquía clara para marcas, negocios y creadores.
+          </p>
+
+          <div class="hero-cta-cluster" data-reveal>
+            <a class="btn-hire-circle" href="#contact" aria-label="Contrátame — Ir a contacto">
+              <span>CONTRÁTAME</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 17 17 7M7 7h10v10" />
+              </svg>
+            </a>
+
+            <div class="hero-secondary-links">
+              <a class="btn-ghost btn-ghost--hero" href="#work">
+                <span>Explorar proyectos</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </a>
+              <a class="btn-ghost btn-ghost--hero" href="#services">Servicios</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portrait Overlapping Headline with CSS Mask Brush Stroke -->
+        <div class="hero-visual-col" data-reveal>
+          <div class="brush-portrait-wrap">
+            <div class="brush-portrait-mask">
+              <img
+                src="/images/rafa-castro-hero.webp"
+                alt="Retrato de Rafa Castro, diseñador gráfico y editor de video"
+                width="576"
+                height="1024"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <span class="portrait-caption-tag">RAFA CASTRO · UVM DISEÑO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Brand / Discipline Strip -->
+    <div class="hero-brand-strip">
+      <div class="container brand-strip-inner">
+        <span class="brand-strip-label">ESPECIALIDADES & HERRAMIENTAS</span>
+        <div class="brand-strip-items">
+          <span class="brand-strip-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+            ILLUSTRATOR
+          </span>
+          <span class="brand-strip-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            PHOTOSHOP
+          </span>
+          <span class="brand-strip-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3V9z"/></svg>
+            PREMIERE PRO
+          </span>
+          <span class="brand-strip-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            INDESIGN
+          </span>
+          <span class="brand-strip-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            HTML / CSS / JS
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK (ZIG-ZAG ALTERNATING ROWS WITH UNIFIED POSTER COVERS) -->
+  <section class="section-block" id="work" aria-labelledby="work-title">
+    <div class="container">
+      <div class="section-header-row" data-reveal>
+        <div class="section-header-main">
+          <span class="accent-pill">01 / PROYECTOS SELECCIONADOS</span>
+          <h2 class="anton-h2" id="work-title">TRABAJOS DE DISEÑO GRÁFICO Y EDICIÓN AUDIOVISUAL.</h2>
+        </div>
+        <p class="section-header-desc">
+          Casos reales de montaje audiovisual, diseño impreso y propuestas de identidad construidas con criterio editorial.
+        </p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filtrar proyectos" data-reveal>
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">
+          Todos <span class="filter-count">{String(projects.length).padStart(2, '0')}</span>
+        </button>
+        <button class="filter-button" type="button" data-filter="design" aria-pressed="false">
+          Diseño gráfico
+        </button>
+        <button class="filter-button" type="button" data-filter="video" aria-pressed="false">
+          Edición de video
+        </button>
+      </div>
+
+      <div class="zigzag-list" id="work-grid">
+        {projects.map((project, index) => (
+          <ProjectCard project={project} index={index} />
+        ))}
+      </div>
+
+      <p class="editorial-note" data-reveal>
+        Nota editorial: FrontROW y Teletón incluyen los videos finales editados. Tarjetas de agradecimiento y CarKey & Remote presentan propuestas gráficas reales (en CarKey se destaca la propuesta 02 por criterio editorial del diseñador, sin aprobación formal del cliente). Los casos 05 a 08 muestran portadas conceptuales en desarrollo.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES & PROFILE (ZIG-ZAG ALTERNATING ROWS) -->
+  <section class="section-block services-section" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-header-row" data-reveal>
+        <div class="section-header-main">
+          <span class="accent-pill">02 / SERVICIOS ESPECIALIZADOS</span>
+          <h2 class="anton-h2" id="services-title">DOS DISCIPLINAS, UN MISMO CRITERIO VISUAL.</h2>
+        </div>
+        <p class="section-header-desc">
+          Estructura gráfica y ritmo audiovisual para resolver necesidades reales de marcas, emprendedores y empresas.
+        </p>
+      </div>
+
+      <div class="service-zigzag-stack">
+        <article class="service-row-card" data-reveal>
+          <div class="service-row-head">
+            <span class="service-num-badge">01</span>
+            <h3 class="anton-h3">Diseño gráfico e identidad</h3>
+          </div>
+          <div class="service-row-detail">
+            <p>
+              Desarrollo de sistemas visuales claros y funcionales, cuidando jerarquía tipográfica, retícula, legibilidad y preparación técnica de archivos para salida digital o impresión.
+            </p>
+            <div class="service-tags">
+              <span>Identidad visual</span>
+              <span>Diseño editorial</span>
+              <span>Piezas publicitarias</span>
+              <span>Tarjetas y papelería</span>
+              <span>Arte final impreso</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="service-row-card" data-reveal>
+          <div class="service-row-head">
+            <span class="service-num-badge">02</span>
+            <h3 class="anton-h3">Edición de video y montaje</h3>
+          </div>
+          <div class="service-row-detail">
+            <p>
+              Construcción narrativa a partir de material en bruto multicámara o locuciones, optimizando el ritmo, la claridad vocal y el formato para plataformas sociales o corporativas.
+            </p>
+            <div class="service-tags">
+              <span>Reels y redes sociales</span>
+              <span>Storytelling y montaje</span>
+              <span>Selección multicámara</span>
+              <span>Subtitulado dinámico</span>
+              <span>Restauración de audio IA</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- PROFILE / ABOUT -->
+      <div class="profile-banner" id="about" data-reveal>
+        <div class="profile-lead-col">
+          <span class="accent-pill" style="width: fit-content;">03 / PERFIL PROFESIONAL</span>
+          <h3 class="anton-h3">ORDEN VISUAL CON ENFOQUE COMERCIAL.</h3>
+        </div>
+
+        <div class="profile-body-col">
+          <p class="profile-lead-text">
+            Soy Rafa Castro, estudiante de séptimo semestre de Diseño Gráfico en la UVM (México). Me enfoco en que cada pieza comunique con intención, claridad y personalidad propia.
+          </p>
+          <p>
+            Trabajo de forma independiente en encargos de diseño impreso, rediseño de comunicación comercial y edición de video. Analizo el problema de comunicación, ordeno la información y propongo soluciones visuales directas.
+          </p>
+          <div class="tools-row" aria-label="Herramientas principales">
+            <span>Illustrator</span>
+            <span>Photoshop</span>
+            <span>Premiere Pro</span>
+            <span>InDesign</span>
+            <span>HTML / CSS / JS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT POSTER -->
+  <section class="section-block" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-poster" data-reveal>
+        <div class="hero-blob hero-blob--one" aria-hidden="true"></div>
+
+        <div class="contact-poster-top">
+          <span class="accent-pill accent-pill--hero">04 / CONTACTO Y CONTRATACIÓN</span>
+          <span class="mono-meta">UPWORK · FREELANCE DIRECTO · CDMX</span>
+        </div>
+
+        <h2 class="contact-poster-title" id="contact-title">TRABAJEMOS EN TU PRÓXIMO PROYECTO.</h2>
+
+        <div class="contact-poster-bottom">
+          <p>
+            ¿Necesitas diseñar la identidad de tu negocio, preparar material impreso o editar videos con estructura narrativa? Escríbeme y revisamos tu proyecto.
+          </p>
+
+          <div class="contact-poster-actions">
+            {site.email ? (
+              <a class="btn-hire-circle" href={`mailto:${site.email}`} aria-label={`Enviar correo a ${site.email}`}>
+                <span>CONTRÁTAME</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7M7 7h10v10" />
+                </svg>
+              </a>
+            ) : (
+              <span class="pending-email-badge">CORREO PENDIENTE EN SRC/DATA/SITE.JS</span>
+            )}
+            <a class="btn-ghost btn-ghost--hero" href="#work">Revisar casos de estudio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

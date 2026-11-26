@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import CustomVideoPlayer from '../../components/CustomVideoPlayer.astro';
+import { projects } from '../../data/projects.js';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const currentIndex = projects.findIndex((p) => p.slug === project.slug);
+const next = projects[(currentIndex + 1) % projects.length];
+---
+<BaseLayout title={`${project.title} — Rafa Castro`} description={project.summary}>
+  <section class="case-banner" id="top">
+    <div class="hero-blob hero-blob--one" aria-hidden="true"></div>
+    <div class="container">
+      <div class="case-breadcrumb" data-reveal>
+        <a class="case-back-btn" href="/#work">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          <span>Todos los proyectos</span>
+        </a>
+        <span class="mono-meta">CASO {project.number} / {project.year}</span>
+      </div>
+
+      <span class="accent-pill accent-pill--hero" data-reveal>{project.type}</span>
+      <h1 class="case-hero-title" data-reveal>{project.title}</h1>
+      <p class="case-hero-summary" data-reveal>{project.summary}</p>
+    </div>
+  </section>
+
+  <section class="container case-stage-section">
+    <div class="case-stage" data-reveal>
+      <div class="case-art" transition:name={`cover-${project.slug}`}>
+        <ProjectCover project={project} />
+      </div>
+
+      {!project.video && (
+        <p class="case-art-note mono-meta">
+          {project.gallery
+            ? project.artNote || 'ARTE FINAL PREPARADO PARA PORTAFOLIO · DATOS PERSONALES OCULTOS'
+            : 'PORTADA CONCEPTUAL · CASO DE ESTUDIO EN PREPARACIÓN'}
+        </p>
+      )}
+    </div>
+
+    {project.video && (
+      <div class="case-video-block" data-reveal>
+        <div class="case-video-head">
+          <span class="accent-pill">PIEZA AUDIOVISUAL COMPLETA</span>
+          <span class="mono-meta" style="color: var(--color-ink-muted);">REPRODUCCIÓN BAJO DEMANDA</span>
+        </div>
+        <CustomVideoPlayer
+          src={project.video}
+          poster={project.image}
+          title={`Video de ${project.title}`}
+        />
+        <p class="case-video-caption">
+          El video se carga únicamente al presionar reproducir para mantener una navegación rápida.
+        </p>
+      </div>
+    )}
+  </section>
+
+  {project.designDiagnosis && (
+    <section class="container" aria-label="Diagnóstico de rediseño">
+      <div class="case-diagnosis-card" data-reveal>
+        <span class="accent-pill accent-pill--hero">EL RETO Y LA SOLUCIÓN</span>
+        <h2 class="anton-h2">{project.designDiagnosis.title}</h2>
+        <div class="case-diagnosis-grid">
+          <div class="diagnosis-col">
+            <span class="mono-meta" style="color: var(--color-secondary);">01 / DIAGNÓSTICO PREVIO</span>
+            <p>{project.designDiagnosis.before}</p>
+          </div>
+          <div class="diagnosis-col">
+            <span class="mono-meta" style="color: var(--color-surface);">02 / RESPUESTA EDITORIAL</span>
+            <p>{project.designDiagnosis.after}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {project.gallery && (
+    <section class="case-gallery-section" aria-label="Galería del proyecto">
+      <div class="container">
+        <div class="case-gallery-head" data-reveal>
+          <span class="accent-pill">DETALLES Y ENTREGABLES</span>
+          <p>{project.galleryIntro || 'Del arte final a los detalles de composición.'}</p>
+        </div>
+
+        <div class="case-gallery-grid">
+          {project.gallery.map((item, i) => (
+            <figure class="case-gallery-item" data-reveal>
+              <div class="case-gallery-visual">
+                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+              </div>
+              <figcaption>
+                <span class="case-gallery-num">{String(i + 1).padStart(2, '0')}</span>
+                <span>{item.caption}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="container" aria-label="Ficha técnica del proyecto">
+    <div class="case-details-grid">
+      <article class="detail-card" data-reveal>
+        <span class="accent-pill" style="width: fit-content;">CONTEXTO</span>
+        <p>{project.context}</p>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <span class="accent-pill" style="width: fit-content;">ENFOQUE Y PROCESO</span>
+        <p>{project.approach}</p>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <span class="accent-pill" style="width: fit-content;">ALCANCE REALIZADO</span>
+        <div class="scope-tags">
+          {project.scope.map((item) => (
+            <span>{item}</span>
+          ))}
+        </div>
+      </article>
+
+      <article class="detail-card" data-reveal>
+        <span class="accent-pill" style="width: fit-content;">ESTADO DEL CASO</span>
+        <p>{project.status}</p>
+      </article>
+    </div>
+
+    {project.credit && (
+      <div class="credit-card" data-reveal>
+        <span class="mono-meta" style="color: var(--color-primary);">CRÉDITOS Y TRANSPARENCIA</span>
+        <p>{project.credit}</p>
+      </div>
+    )}
+  </section>
+
+  <section class="container case-next-wrap">
+    <a class="case-next-card" href={`/work/${next.slug}/`} data-reveal>
+      <span class="accent-pill accent-pill--hero" style="width: fit-content;">SIGUIENTE PROYECTO · {next.number}</span>
+      <strong>{next.title}</strong>
+      <span class="mono-meta">EXPLORAR CASO DE ESTUDIO</span>
+    </a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+const { src, poster = '', title = 'Video del proyecto' } = Astro.props;
+---
+<div class="rc-player" data-rc-player>
+  <video class="rc-player__video" playsinline preload="metadata" poster={poster} aria-label={title}>
+    <source src={src} type="video/mp4" />
+    Tu navegador no puede reproducir este video.
+  </video>
+  <button class="rc-player__bigplay" type="button" data-action="play" aria-label="Reproducir video">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z" fill="currentColor"/></svg>
+  </button>
+  <div class="rc-player__controls">
+    <div class="rc-player__progress-wrap">
+      <input class="rc-player__progress" type="range" min="0" max="1000" value="0" step="1" aria-label="Posición del video" data-progress style="--progress:0%" />
+    </div>
+    <div class="rc-player__toolbar">
+      <div class="rc-player__group">
+        <button class="rc-player__btn" type="button" data-action="play" aria-label="Reproducir video" title="Reproducir / pausar">
+          <svg class="rc-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7z" fill="currentColor"/></svg>
+          <svg class="rc-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+        </button>
+        <button class="rc-player__btn rc-player__skip" type="button" data-skip="-10" aria-label="Retroceder 10 segundos" title="Retroceder 10 s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8V4m0 4h4M5 8a8 8 0 1 1-1 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="15" font-size="8" text-anchor="middle" fill="currentColor">10</text></svg></button>
+        <button class="rc-player__btn rc-player__skip" type="button" data-skip="10" aria-label="Avanzar 10 segundos" title="Avanzar 10 s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8V4m0 4h-4m4 0a8 8 0 1 0 1 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="15" font-size="8" text-anchor="middle" fill="currentColor">10</text></svg></button>
+        <span class="rc-player__time"><span data-current>0:00</span> <span class="rc-player__time-sep">/</span> <span data-duration>0:00</span></span>
+      </div>
+      <div class="rc-player__group">
+        <button class="rc-player__btn" type="button" data-action="mute" aria-label="Silenciar video" title="Silenciar / activar sonido">
+          <svg class="rc-icon-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <svg class="rc-icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM17 9l5 6m0-6-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <input class="rc-player__volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volumen" data-volume />
+        <button class="rc-player__btn" type="button" data-action="fullscreen" aria-label="Pantalla completa" title="Pantalla completa">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function initPlayers() {
+    document.querySelectorAll('[data-rc-player]').forEach((root) => {
+      if (root.dataset.initialized === 'yes') return;
+      root.dataset.initialized = 'yes';
+      const video = root.querySelector('video');
+      const progress = root.querySelector('[data-progress]');
+      const volume = root.querySelector('[data-volume]');
+      const current = root.querySelector('[data-current]');
+      const duration = root.querySelector('[data-duration]');
+      const buttons = root.querySelectorAll('[data-action="play"]');
+      const mute = root.querySelector('[data-action="mute"]');
+      const fullscreen = root.querySelector('[data-action="fullscreen"]');
+      const fmt = s => Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}` : '0:00';
+      const sync = () => {
+        const fraction = Number.isFinite(video.duration) && video.duration > 0 ? video.currentTime / video.duration : 0;
+        progress.value = String(Math.round(fraction * 1000));
+        progress.style.setProperty('--progress', `${fraction * 100}%`);
+        current.textContent = fmt(video.currentTime);
+        duration.textContent = fmt(video.duration);
+        root.classList.toggle('is-playing', !video.paused && !video.ended);
+        root.classList.toggle('is-muted', video.muted || video.volume === 0);
+        buttons.forEach(b => b.setAttribute('aria-label', video.paused ? 'Reproducir video' : 'Pausar video'));
+        mute.setAttribute('aria-label', video.muted || video.volume === 0 ? 'Activar sonido' : 'Silenciar video');
+      };
+      const toggle = () => video.paused ? video.play().catch(() => {}) : video.pause();
+      buttons.forEach(b => b.addEventListener('click', toggle));
+      video.addEventListener('click', toggle);
+      root.querySelectorAll('[data-skip]').forEach(b => b.addEventListener('click', () => {
+        if (Number.isFinite(video.duration)) video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + Number(b.dataset.skip)));
+      }));
+      progress.addEventListener('input', () => {
+        if (Number.isFinite(video.duration)) video.currentTime = Number(progress.value) / 1000 * video.duration;
+        sync();
+      });
+      volume.addEventListener('input', () => { video.volume = Number(volume.value); video.muted = video.volume === 0; sync(); });
+      mute.addEventListener('click', () => { video.muted = !video.muted; sync(); });
+      fullscreen.addEventListener('click', async () => {
+        try {
+          if (document.fullscreenElement) await document.exitFullscreen();
+          else if (root.requestFullscreen) await root.requestFullscreen();
+          else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+        } catch (_) { /* Browser may prevent fullscreen */ }
+      });
+      root.addEventListener('keydown', e => {
+        if (e.target.matches('input, button')) return;
+        if (e.code === 'Space' || e.code === 'KeyK') { e.preventDefault(); toggle(); }
+        if (e.code === 'ArrowRight' && Number.isFinite(video.duration)) video.currentTime = Math.min(video.duration, video.currentTime + 5);
+        if (e.code === 'ArrowLeft') video.currentTime = Math.max(0, video.currentTime - 5);
+      });
+      ['loadedmetadata', 'timeupdate', 'play', 'pause', 'ended', 'volumechange', 'durationchange'].forEach(event => video.addEventListener(event, sync));
+      sync();
+    });
+  }
+  document.addEventListener('astro:page-load', initPlayers);
+  if (document.readyState !== 'loading') initPlayers();
+  else document.addEventListener('DOMContentLoaded', initPlayers, { once: true });
+</script>

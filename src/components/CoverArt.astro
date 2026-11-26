@@ -1,0 +1,52 @@
+---
+const { variant = 'deco' } = Astro.props;
+---
+<div class={`cover-art cover-${variant}`} aria-hidden="true">
+  {variant === 'deco' && (
+    <>
+      <div class="cover-top-row">
+        <span class="cover-folio">CONCEPTO / 2026</span>
+        <span class="cover-demo-badge">EN PREPARACIÓN</span>
+      </div>
+      <span class="cover-shape-block"></span>
+      <span class="cover-word">DECO<br />GALERÍA</span>
+      <span class="cover-folio">DISEÑO + VIDEO</span>
+    </>
+  )}
+
+  {variant === 'toys' && (
+    <>
+      <div class="cover-top-row">
+        <span class="cover-folio">IDENTIDAD / UVM</span>
+        <span class="cover-demo-badge">EN PREPARACIÓN</span>
+      </div>
+      <span class="cover-shape-circle"></span>
+      <span class="cover-word">PEQUEÑOS<br />TITANES</span>
+      <span class="cover-folio">MARCA Y SISTEMA GRÁFICO</span>
+    </>
+  )}
+
+  {variant === 'fire' && (
+    <>
+      <div class="cover-top-row">
+        <span class="cover-folio">VIDEOENSAYO</span>
+        <span class="cover-demo-badge">EN PREPARACIÓN</span>
+      </div>
+      <span class="cover-shape-arch"></span>
+      <span class="cover-word">FIRE<br />WATCH</span>
+      <span class="cover-folio">NARRATIVA Y DISEÑO SONORO</span>
+    </>
+  )}
+
+  {variant === 'zoo' && (
+    <>
+      <div class="cover-top-row">
+        <span class="cover-folio">SEÑALÉTICA / UVM</span>
+        <span class="cover-demo-badge">EN PREPARACIÓN</span>
+      </div>
+      <span class="cover-shape-grid"></span>
+      <span class="cover-word">CHAPUL<br />TEPEC</span>
+      <span class="cover-folio">ORIENTACIÓN Y PICTOGRAMAS</span>
+    </>
+  )}
+</div>

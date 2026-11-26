@@ -1,0 +1,37 @@
+---
+import ProjectCover from './ProjectCover.astro';
+
+const { project, index = 0 } = Astro.props;
+---
+<article class="zigzag-card" data-category={project.filter} data-reveal style={`--card-index:${index}`}>
+  <a class="zigzag-link" href={`/work/${project.slug}/`} aria-label={`Ver proyecto: ${project.title}`}>
+    <div class="zigzag-media" transition:name={`cover-${project.slug}`}>
+      <ProjectCover project={project} />
+    </div>
+
+    <div class="zigzag-body">
+      <div>
+        <div class="zigzag-top-meta">
+          <span class="accent-pill">{project.category}</span>
+          <span class="mono-meta" style="color: var(--color-ink-muted);">{project.number} / {project.year}</span>
+        </div>
+
+        <h3 class="anton-h3 zigzag-title">{project.title}</h3>
+        <p class="zigzag-summary">{project.summary}</p>
+      </div>
+
+      <div class="zigzag-tags">
+        {project.scope.slice(0, 4).map((item) => (
+          <span>{item}</span>
+        ))}
+      </div>
+
+      <div class="zigzag-cta-row">
+        <span>Ver caso de estudio</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7M7 7h10v10" />
+        </svg>
+      </div>
+    </div>
+  </a>
+</article>

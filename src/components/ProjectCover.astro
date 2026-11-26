@@ -1,0 +1,130 @@
+---
+const { project } = Astro.props;
+
+const isWarm = project.slug === 'decogaleria' || project.slug === 'firewatch';
+const isPrint = project.slug === 'tarjetas-agradecimiento' || project.slug === 'carkey-remote';
+
+const badgeMap = {
+  frontrow: 'VIDEO FINAL',
+  teleton: 'VIDEO FINAL',
+  'tarjetas-agradecimiento': 'ARTE IMPRESO',
+  'carkey-remote': 'PROPUESTA 02',
+  decogaleria: 'EN DESARROLLO',
+  'pequenos-titanes': 'EN DESARROLLO',
+  firewatch: 'EN DESARROLLO',
+  chapultepec: 'EN DESARROLLO',
+};
+
+const shortTitles = {
+  frontrow: 'FRONTROW',
+  teleton: 'TELETÓN',
+  'tarjetas-agradecimiento': 'TARJETAS NAVIDEÑAS',
+  'carkey-remote': 'CARKEY & REMOTE',
+  decogaleria: 'DECOGALERÍA',
+  'pequenos-titanes': 'PEQUEÑOS TITANES',
+  firewatch: 'FIREWATCH',
+  chapultepec: 'CHAPULTEPEC',
+};
+
+const kickers = {
+  frontrow: 'NARRATIVA PARA REDES',
+  teleton: 'MONTAJE INSTITUCIONAL',
+  'tarjetas-agradecimiento': 'DISEÑO EDITORIAL E IMPRESO',
+  'carkey-remote': 'REDISEÑO BILINGÜE · FRENTE / REVERSO',
+  decogaleria: 'CAMPAÑA DIGITAL + VIDEO',
+  'pequenos-titanes': 'IDENTIDAD DE MARCA · UVM',
+  firewatch: 'VIDEOENSAYO NARRATIVO',
+  chapultepec: 'SEÑALÉTICA Y PICTOGRAMAS · UVM',
+};
+---
+<div
+  class={`poster-cover ${isWarm ? 'poster-cover--warm' : ''} ${isPrint ? 'poster-cover--print' : ''}`}
+  aria-hidden="true"
+>
+  <!-- Top Metadata Strip (consistent across all 8 projects) -->
+  <div class="poster-cover-top">
+    <span>RC / {project.number}</span>
+    <span class="poster-cover-tag">{badgeMap[project.slug] || 'PROYECTO'}</span>
+  </div>
+
+  <!-- Center Stage: Unified Layout per Media Type -->
+  {project.slug === 'frontrow' && (
+    <div class="poster-cover-stage">
+      <div class="poster-cover-title-group">
+        <span class="poster-cover-kicker">{kickers.frontrow}</span>
+        <strong class="poster-cover-heading">{shortTitles.frontrow}</strong>
+        <span class="poster-cover-sub">Liderazgo, deporte y emprendimiento en formato vertical.</span>
+      </div>
+      <div class="poster-media-frame poster-media-frame--video">
+        <img src={project.image} alt="" loading="lazy" />
+        <span class="poster-play-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>
+        </span>
+      </div>
+    </div>
+  )}
+
+  {project.slug === 'teleton' && (
+    <div class="poster-cover-stage">
+      <div class="poster-cover-title-group">
+        <span class="poster-cover-kicker">{kickers.teleton}</span>
+        <strong class="poster-cover-heading">{shortTitles.teleton}</strong>
+        <span class="poster-cover-sub">Presentación audiovisual para aliados y marcas.</span>
+      </div>
+      <div class="poster-media-frame poster-media-frame--video-wide">
+        <img src={project.image} alt="" loading="lazy" />
+        <span class="poster-play-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 12 7-12 7z"/></svg>
+        </span>
+      </div>
+    </div>
+  )}
+
+  {project.slug === 'tarjetas-agradecimiento' && (
+    <div class="poster-cover-stage poster-cover-stage--stacked">
+      <div class="poster-cover-title-group">
+        <span class="poster-cover-kicker">{kickers['tarjetas-agradecimiento']}</span>
+        <strong class="poster-cover-heading">{shortTitles['tarjetas-agradecimiento']}</strong>
+      </div>
+      <div class="poster-media-frame poster-media-frame--print">
+        <img src="/images/tarjetas-navidenas-arte-publico.webp" alt="" loading="lazy" />
+      </div>
+    </div>
+  )}
+
+  {project.slug === 'carkey-remote' && (
+    <div class="poster-cover-stage poster-cover-stage--stacked">
+      <div class="poster-cover-title-group">
+        <span class="poster-cover-kicker">{kickers['carkey-remote']}</span>
+        <strong class="poster-cover-heading">{shortTitles['carkey-remote']}</strong>
+      </div>
+      <div class="poster-dual-cards">
+        <img src="/images/carkey-frente.webp" alt="" loading="lazy" />
+        <img src="/images/carkey-reverso.webp" alt="" loading="lazy" />
+      </div>
+    </div>
+  )}
+
+  {!project.image && !project.coverImage && (
+    <div class="poster-cover-stage">
+      <div class="poster-cover-title-group">
+        <span class="poster-cover-kicker">{kickers[project.slug] || project.category}</span>
+        <strong class="poster-cover-heading">{shortTitles[project.slug] || project.title}</strong>
+        <span class="poster-cover-sub">{project.summary}</span>
+      </div>
+      <div class={`poster-concept-badge ${project.slug === 'pequenos-titanes' ? 'poster-concept-badge--circle' : ''}`}>
+        {project.number}
+      </div>
+    </div>
+  )}
+
+  <!-- Bottom Technical Strip (consistent across all 8 projects) -->
+  <div class="poster-cover-bottom">
+    <span>{project.scope.slice(0, 3).join(' · ')}</span>
+    <span class="poster-cover-arrow">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 17 7M7 7h10v10" />
+      </svg>
+    </span>
+  </div>
+</div>

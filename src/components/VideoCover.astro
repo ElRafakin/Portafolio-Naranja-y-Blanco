@@ -1,0 +1,34 @@
+---
+const { project } = Astro.props;
+const isTeleton = project.slug === 'teleton';
+---
+<div class={`video-cover ${isTeleton ? 'video-cover--teleton' : 'video-cover--frontrow'}`}>
+  <div class="video-cover-photo" aria-hidden="true">
+    <img src={project.image} alt="" loading="lazy" />
+  </div>
+  <div class="video-cover-scrim" aria-hidden="true"></div>
+
+  <div class="video-cover-top">
+    <span>RC / AUDIOVISUAL</span>
+    <span>{isTeleton ? '02 — INSTITUCIONAL' : '01 — SOCIAL'}</span>
+  </div>
+
+  <div class="video-cover-main">
+    <span class="video-cover-kicker">
+      {isTeleton ? 'MONTAJE PROMOCIONAL' : 'NARRATIVA PARA REDES'}
+    </span>
+    <strong>{isTeleton ? 'TELETÓN' : 'FRONTROW'}</strong>
+    <span class="video-cover-sub">
+      {isTeleton ? 'Presentación para aliados y marcas.' : 'Liderazgo, deporte y emprendimiento.'}
+    </span>
+  </div>
+
+  <div class="video-cover-bottom">
+    <span>{isTeleton ? 'LOCUCIÓN · MONTAJE · EDICIÓN' : 'STORYTELLING · AUDIO IA · EDICIÓN'}</span>
+    <span class="video-cover-arrow" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 17 7M7 7h10v10" />
+      </svg>
+    </span>
+  </div>
+</div>

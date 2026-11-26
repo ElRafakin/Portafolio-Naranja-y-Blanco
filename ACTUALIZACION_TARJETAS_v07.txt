@@ -1,0 +1,33 @@
+RAFA CASTRO · PORTAFOLIO WEB · ACTUALIZACION V0.7
+PROYECTO NUEVO: TARJETAS DE AGRADECIMIENTO
+
+Compatibilidad: proyecto v0.6 con los cambios visuales v0.5 y reproductor personalizado.
+No se modifica DulciGela; queda pendiente.
+
+INSTALACION
+1. Cierra el servidor Astro con Ctrl+C.
+2. Haz una copia de seguridad de tu carpeta actual rafa-castro-portfolio.
+3. Extrae este parche.
+4. Copia las carpetas src y public en la RAIZ de rafa-castro-portfolio (la que contiene package.json).
+5. Acepta reemplazar los archivos con el mismo nombre.
+6. Desde esa carpeta, ejecuta npm.cmd run dev y abre http://localhost:4321/.
+7. Ve a http://localhost:4321/work/tarjetas-agradecimiento/.
+Si no ves cambios, recarga con Ctrl+F5.
+No necesitas ejecutar npm install.
+
+INCLUYE
+- Entrada de proyecto nuevo y miniatura en galeria principal.
+- Portada editorial: foto-escena digital de temporada + tu diseno real.
+- Pagina de caso con texto sobre encargo, diseno y preparacion para impresion.
+- Dos vistas adicionales del arte.
+- Datos de contacto de una tercera persona ocultos en TODAS las imagenes publicas.
+
+IMPORTANTE
+- El PDF original no se incluye ni ha sido editado.
+- La portada es un montaje digital, NO una fotografia de las tarjetas impresas.
+- Los logotipos de Natura y Betterware siguen formando parte del trabajo de muestra,
+  pero son propiedad de sus respectivos titulares.
+- Antes de publicar el proyecto, confirma con la persona que te encargo la tarjeta
+  que permite mostrar el trabajo y los logotipos utilizados.
+- La compilacion de Astro debe comprobarse en tu PC; las dependencias no pudieron
+  instalarse en el entorno de preparacion de este parche.
